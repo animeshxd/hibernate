@@ -32,6 +32,13 @@
             <version>6.1.2.Final</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.hibernate.orm/hibernate-community-dialects -->
+        <dependency>
+            <groupId>org.hibernate.orm</groupId>
+            <artifactId>hibernate-community-dialects</artifactId>
+            <version>6.1.2.Final</version>
+        </dependency>
+
 
     </dependencies>
 
