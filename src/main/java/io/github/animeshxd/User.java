@@ -1,5 +1,6 @@
 package io.github.animeshxd;
 
+import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -15,6 +16,8 @@ public class User {
 
 
     private int age;
+
+    @Basic(optional = true)
     private String email;
     
     public User(int id, String name, int age, String email) {
