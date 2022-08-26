@@ -29,6 +29,9 @@
             update - create the database schema on startup if not exists
         -->
         <property name="hbm2ddl.auto">update</property>
+        
+        <!-- mapping -->
+        <mapping class="io.github.animeshxd.User"/>
 
 
     </session-factory>
