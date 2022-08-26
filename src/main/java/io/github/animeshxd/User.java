@@ -1,13 +1,16 @@
 package io.github.animeshxd;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
-@Entity
+@Entity(name = "users_entity")
 public class User {
 
     @Id
     private int id;
+
+    @Column(name = "full_name")
     private String name;
 
 
