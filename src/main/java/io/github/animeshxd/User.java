@@ -79,7 +79,8 @@ public class User {
         return date;
     }
 
-    public void setDate(java.util.Date date2) {
+    public User setDate(java.util.Date date2) {
         this.date = date2;
+        return this;
     }
 }
