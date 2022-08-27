@@ -1,5 +1,7 @@
 package io.github.animeshxd;
 
+import java.util.Date;
+
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -18,14 +20,17 @@ public class User {
     @Transient
     private int age;
 
-    @Basic(optional = true)
     private String email;
-    
-    public User(int id, String name, int age, String email) {
+
+    @Basic(optional = false)
+    private Date date;
+
+    public User(int id, String name, int age, String email, Date date) {
         this.id = id;
         this.name = name;
         this.age = age;
         this.email = email;
+        this.date = date;
     }
 
     public User() {}
@@ -64,6 +69,14 @@ public class User {
     public User setEmail(String email) {
         this.email = email;
         return this;
+    }
+        
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(java.util.Date date2) {
+        this.date = date2;
     }
     
 }
