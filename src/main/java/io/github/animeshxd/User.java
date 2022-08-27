@@ -6,6 +6,8 @@ import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import jakarta.persistence.Transient;
 
 @Entity(name = "users_entity")
@@ -23,6 +25,7 @@ public class User {
     private String email;
 
     @Basic(optional = false)
+    @Temporal(TemporalType.DATE)
     private Date date;
 
     public User(int id, String name, int age, String email, Date date) {

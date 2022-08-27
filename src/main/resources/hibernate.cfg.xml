@@ -20,7 +20,7 @@
 
         <!-- sqlite date and time datatype -->
         <!-- timestamp (default), INTEGER, REAL, TEXT -->
-        <property name="connection.date_class">TEXT</property>
+        <!-- <property name="connection.date_class">TEXT</property> -->
 
         <!-- SQLiteDialect. -->
         <property name="dialect">org.hibernate.community.dialect.SQLiteDialect</property>
