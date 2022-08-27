@@ -4,6 +4,7 @@ import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Transient;
 
 @Entity(name = "users_entity")
 public class User {
@@ -14,7 +15,7 @@ public class User {
     @Column(name = "full_name")
     private String name;
 
-
+    @Transient
     private int age;
 
     @Basic(optional = true)
