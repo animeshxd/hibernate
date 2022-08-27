@@ -103,5 +103,11 @@ public class User {
         return this;
     }
 
+    @Override
+    public String toString() {
+        return "User [age=" + age + ", date=" + date + ", description=" + description + ", email=" + email + ", file="
+                + file + ", id=" + id + ", name=" + name + "]";
+    }
+
 
 }

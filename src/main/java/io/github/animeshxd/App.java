@@ -23,6 +23,8 @@ public class App
 
         session.getTransaction().commit();
 
+        user = session.get(User.class, "10");
+        System.out.println(user);
         session.close();
     }
 }
