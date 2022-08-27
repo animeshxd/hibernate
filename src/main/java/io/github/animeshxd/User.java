@@ -1,11 +1,13 @@
 package io.github.animeshxd;
 
+import java.sql.Blob;
 import java.util.Date;
 
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import jakarta.persistence.Transient;
@@ -28,6 +30,14 @@ public class User {
     @Basic(optional = false) // make field optional, same as Column(nullable = false)
     @Temporal(TemporalType.DATE) // change date format, (DATE, TIME, TIMESTAMP)
     private Date date;
+
+    // @Column(columnDefinition = "TEXT")
+
+    @Lob
+    private String description;
+
+    @Lob
+    public Blob file;
 
     public User(int id, String name, int age, String email, Date date) {
         this.id = id;
@@ -83,4 +93,15 @@ public class User {
         this.date = date2;
         return this;
     }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public User setDescription(String description) {
+        this.description = description;
+        return this;
+    }
+
+
 }

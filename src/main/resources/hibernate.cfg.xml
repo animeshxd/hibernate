@@ -35,7 +35,7 @@
             create - Drop and re-create the database schema on startup 
             update - create the database schema on startup if not exists
         -->
-        <property name="hbm2ddl.auto">update</property>
+        <property name="hbm2ddl.auto">create</property>
         
         <!-- mapping -->
         <mapping class="io.github.animeshxd.User"/>

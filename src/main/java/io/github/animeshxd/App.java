@@ -18,6 +18,7 @@ public class App
 
         var user = new User();
         user.setId(10).setName("abc").setAge(20).setDate(new Date()).setEmail("asdf@ghj.kl");
+        user.setDescription("hello".repeat(25500));
         session.persist(user);
 
         session.getTransaction().commit();
