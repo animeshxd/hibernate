@@ -13,19 +13,20 @@ import jakarta.persistence.Transient;
 @Entity(name = "users_entity")
 public class User {
 
-    @Id
+    @Id // primary key
     private int id;
 
     @Column(name = "full_name")
     private String name;
 
-    @Transient
+    @Transient // hide, ignore a field
     private int age;
-
+    
+    @Column(unique = true) // unique field
     private String email;
 
-    @Basic(optional = false)
-    @Temporal(TemporalType.DATE)
+    @Basic(optional = false) // make field optional, same as Column(nullable = false)
+    @Temporal(TemporalType.DATE) // change date format, (DATE, TIME, TIMESTAMP)
     private Date date;
 
     public User(int id, String name, int age, String email, Date date) {
@@ -81,5 +82,4 @@ public class User {
     public void setDate(java.util.Date date2) {
         this.date = date2;
     }
-    
 }
