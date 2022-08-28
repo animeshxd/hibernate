@@ -18,7 +18,15 @@ public class App
 
         var user = new User();
         user.setId(10).setName("abc").setAge(20).setDate(new Date()).setEmail("asdf@ghj.kl");
-        user.setDescription("hello".repeat(25500));
+        user.setDescription("hello".repeat(25));
+        var addr = new Address();
+        addr.setPincode(123456);
+        addr.setStreet("street");
+        addr.setState("state");
+        addr.setVillage("village");
+        user.setAddress(addr);
+
+
         session.persist(user);
 
         session.getTransaction().commit();

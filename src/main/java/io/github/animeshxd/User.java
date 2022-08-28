@@ -5,6 +5,7 @@ import java.util.Date;
 
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
@@ -38,6 +39,11 @@ public class User {
 
     @Lob
     public Blob file;
+
+    @Embedded // we have to mark the [object as @Embedded] or [class to @Embeddable] or (can have both)
+    public Address address; // can't be null
+
+    
 
     public User(int id, String name, int age, String email, Date date) {
         this.id = id;
@@ -103,11 +109,20 @@ public class User {
         return this;
     }
 
-    @Override
-    public String toString() {
-        return "User [age=" + age + ", date=" + date + ", description=" + description + ", email=" + email + ", file="
-                + file + ", id=" + id + ", name=" + name + "]";
+    public Address getAddress() {
+        return address;
     }
 
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    @Override
+    public String toString() {
+        return "User [address=" + address + ", age=" + age + ", date=" + date + ", description=" + description
+                + ", email=" + email + ", file=" + file + ", id=" + id + ", name=" + name + "]";
+    }
+
+   
 
 }
