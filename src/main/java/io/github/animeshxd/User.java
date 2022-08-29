@@ -1,5 +1,9 @@
 package io.github.animeshxd;
 
+import java.util.LinkedList;
+import java.util.List;
+
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,6 +16,9 @@ public class User {
     private int id;
 
     private String name;
+
+    @ElementCollection // store collection of objects ( but it will be stored inside another table )
+    private List<Address> addresses = new LinkedList<>();
 
     public User(int id, String name) {
         this.id = id;
@@ -36,6 +43,14 @@ public class User {
     public User setName(String name) {
         this.name = name;
         return this;
+    }
+
+    public List<Address> getAddresses() {
+        return addresses;
+    }
+
+    public void appendAddresses(Address addresse) {
+        this.addresses.add(addresse);
     }
 
     
