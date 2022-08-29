@@ -22,6 +22,9 @@ public class App
         session.persist(user);
         session.getTransaction().commit();
 
+        var addr = session.find(User.class, 1);
+        System.out.println(addr);
+
         session.close();
     }
 }

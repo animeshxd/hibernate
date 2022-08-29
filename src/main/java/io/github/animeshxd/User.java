@@ -59,6 +59,11 @@ public class User {
         this.addresses.add(addresse);
     }
 
+    @Override
+    public String toString() {
+        return "User [addresses=" + addresses + ", id=" + id + ", name=" + name + "]";
+    }
+
     
 
 }
