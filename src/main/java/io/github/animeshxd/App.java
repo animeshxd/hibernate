@@ -23,10 +23,12 @@ public class App
         Post post = new Post();
         post.setTitle("post title 1");
         post.setContent("big description 1");
+        post.setUser(user);
 
         Post post1 = new Post();
         post1.setTitle("post title 2");
         post1.setContent("big description 2");
+        post1.setUser(user);
 
         user.setPosts(List.of(post, post1));
 

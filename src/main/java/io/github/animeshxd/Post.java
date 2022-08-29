@@ -8,6 +8,7 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
+import jakarta.persistence.ManyToOne;
 
 @Entity(name = "post")
 public class Post {
@@ -20,6 +21,9 @@ public class Post {
 
     @Lob @Basic(fetch = FetchType.LAZY)
     private String content;
+
+    @ManyToOne
+    private User user;
  
 
     public UUID getId() {
@@ -46,9 +50,17 @@ public class Post {
         this.content = content;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     @Override
     public String toString() {
-        return "Posts [content=" + content + ", id=" + id + ", title=" + title + "]";
+        return "Post [content=" + content + ", id=" + id + ", title=" + title + ", user=" + user + "]";
     }
     
 }
