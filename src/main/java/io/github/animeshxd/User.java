@@ -5,6 +5,7 @@ import java.util.List;
 
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -19,7 +20,9 @@ public class User {
 
     private String name;
 
-    @ElementCollection // store collection of objects ( but it will be stored inside another table )
+    @ElementCollection(fetch = FetchType.EAGER) // store collection of objects ( but it will be stored inside another table )
+    // ElementCollection[ fetch {LAZY(DEFAULT), EAGER} ] - hibernate provides proxy object (just a subclass) , we can't get value without opened session
+    // we have to specify fetch type to EAGER to load on session.get() or session.find()
     @JoinTable(
         name = "USER_ADDRESS", // table name
         joinColumns = @JoinColumn(name="USER_ID") // foraign key column name
