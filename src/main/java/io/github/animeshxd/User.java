@@ -8,6 +8,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 
 @Entity(name = "users_entity")
 public class User {
@@ -18,6 +20,10 @@ public class User {
     private String name;
 
     @ElementCollection // store collection of objects ( but it will be stored inside another table )
+    @JoinTable(
+        name = "USER_ADDRESS", // table name
+        joinColumns = @JoinColumn(name="USER_ID") // foraign key column name
+    )
     private List<Address> addresses = new LinkedList<>();
 
     public User(int id, String name) {
