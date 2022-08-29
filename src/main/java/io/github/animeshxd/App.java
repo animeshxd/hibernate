@@ -14,6 +14,11 @@ public class App
 
         session.beginTransaction();
 
+        var user = new User();
+    
+        session.persist(user);
+        session.getTransaction().commit();
+
         session.close();
     }
 }
