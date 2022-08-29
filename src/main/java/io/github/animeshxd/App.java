@@ -14,6 +14,14 @@ public class App
 
         session.beginTransaction();
 
+        var user = new User();
+        user.setName("a user")
+            .setAddress(new Address("ABC", 12345));
+
+        session.persist(user);
+        session.persist(user.getAddress());
+        session.getTransaction().commit();
+
         session.close();
     }
 }

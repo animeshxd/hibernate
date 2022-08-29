@@ -1,9 +1,16 @@
 package io.github.animeshxd;
 
-import jakarta.persistence.Embeddable;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
-@Embeddable
+@Entity
 public class Address {
+
+    @Id @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private int no;
+
     private String city;
     private int pincode;
     
@@ -27,9 +34,17 @@ public class Address {
         this.pincode = pincode;
     }
 
+    public int getNo() {
+        return no;
+    }
+
+    public void setNo(int no) {
+        this.no = no;
+    }
+
     @Override
     public String toString() {
-        return "Address [city=" + city + ", pincode=" + pincode + "]";
+        return "Address [city=" + city + ", no=" + no + ", pincode=" + pincode + "]";
     }
     
 }

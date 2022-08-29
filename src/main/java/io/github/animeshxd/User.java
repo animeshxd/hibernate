@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 
 @Entity(name = "users_entity")
 public class User {
@@ -13,6 +14,8 @@ public class User {
 
     private String name;
 
+    @OneToOne
+    private Address address;
 
     public User(int id, String name) {
         this.id = id;
@@ -39,6 +42,19 @@ public class User {
         return this;
     }
 
+    public Address getAddress() {
+        return address;
+    }
+
+    public User setAddress(Address address) {
+        this.address = address;
+        return this;
+    }
+
+    @Override
+    public String toString() {
+        return "User [address=" + address + ", id=" + id + ", name=" + name + "]";
+    }
 
     
 
