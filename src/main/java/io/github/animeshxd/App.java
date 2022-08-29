@@ -41,5 +41,11 @@ public class App
         session.getTransaction().commit();
 
         session.close();
+
+        session = factory.openSession();
+        var usr = session.get(User.class, 1);
+        System.out.println(((Post)usr.getPosts().toArray()[1]).getUser());
+
+        session.close();
     }
 }

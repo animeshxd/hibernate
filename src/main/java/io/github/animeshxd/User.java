@@ -4,11 +4,11 @@ import java.util.Collection;
 import java.util.LinkedList;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 
@@ -24,11 +24,7 @@ public class User {
     @JoinColumn(name = "addr_no")
     private Address address;
 
-    @OneToMany
-    @JoinTable( name = "USERS_POST", 
-                joinColumns = @JoinColumn(name="USERS_ID"),
-                inverseJoinColumns = @JoinColumn(name="POST_ID")
-    )
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY) // mappedBy = "user" Post.user will do the mapping instead of creating new table
     private Collection<Post> posts = new LinkedList<>();
 
     public User(int id, String name) {
@@ -77,6 +73,8 @@ public class User {
     public String toString() {
         return "User [address=" + address + ", id=" + id + ", name=" + name + "]";
     }
+
+    
 
     
 
