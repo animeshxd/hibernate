@@ -40,6 +40,7 @@
         <!-- mapping -->
         <mapping class="io.github.animeshxd.User"/>
         <mapping class="io.github.animeshxd.Address"/>
+        <mapping class="io.github.animeshxd.Post"/>
 
 
     </session-factory>
