@@ -8,8 +8,9 @@ import jakarta.persistence.AttributeOverrides;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
+import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+//import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
@@ -18,8 +19,12 @@ import jakarta.persistence.Transient;
 @Entity(name = "users_entity")
 public class User {
 
-    @Id // primary key
-    private int id;
+    // @Id // primary key
+    // private int id;
+
+    @EmbeddedId // composite primary key (embeded)
+    private Idd id;
+
 
     @Column(name = "full_name")
     private String name;
@@ -69,21 +74,14 @@ public class User {
     
 
 
-    public User(int id, String name, int age, String email, Date date) {
-        this.id = id;
-        this.name = name;
-        this.age = age;
-        this.email = email;
-        this.date = date;
-    }
 
     public User() {}
 
-    public int getId() {
+    public Idd getIdd() {
         return id;
     }
 
-    public User setId(int id) {
+    public User setIdd(Idd id) {
         this.id = id;
         return this;
     }

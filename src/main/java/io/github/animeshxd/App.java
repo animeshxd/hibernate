@@ -17,7 +17,7 @@ public class App
         session.beginTransaction();
 
         var user = new User();
-        user.setId(10).setName("abc").setAge(20).setDate(new Date()).setEmail("asdf@ghj.kl");
+        user.setIdd(new Idd(1, 1)).setName("abc").setAge(20).setDate(new Date()).setEmail("asdf@ghj.kl");
         user.setDescription("hello".repeat(25));
         var addr = new Address();
         addr.setPincode(123456);
@@ -45,7 +45,7 @@ public class App
 
         session.getTransaction().commit();
 
-        user = session.get(User.class, "10");
+        user = session.get(User.class, new Idd(1,1));
         System.out.println(user);
         session.close();
     }
