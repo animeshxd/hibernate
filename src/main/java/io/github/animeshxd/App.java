@@ -26,6 +26,20 @@ public class App
         addr.setVillage("village");
         user.setAddress(addr);
 
+        var addr2 = new Address();
+        addr2.setPincode(987654);
+        addr2.setStreet("street 2");
+        addr2.setState("state 2");
+        addr2.setVillage("village 2");
+        user.setAddress2(addr2);
+
+        var addr3 = new Address();
+        addr3.setPincode(123456);
+        addr3.setStreet("street");
+        addr3.setState("state");
+        addr3.setVillage("village");
+        user.setAddress3(addr3);
+
 
         session.persist(user);
 

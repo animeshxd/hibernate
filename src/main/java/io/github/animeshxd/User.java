@@ -3,6 +3,8 @@ package io.github.animeshxd;
 import java.sql.Blob;
 import java.util.Date;
 
+import jakarta.persistence.AttributeOverride;
+import jakarta.persistence.AttributeOverrides;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
@@ -42,8 +44,30 @@ public class User {
 
     @Embedded // we have to mark the [object as @Embedded] or [class to @Embeddable] or (can have both)
     public Address address; // can't be null
+    
+    @Embedded
+    @AttributeOverrides({
+        @AttributeOverride(name = "village", column = @Column(name = "A_village")),
+        @AttributeOverride(name = "street", column = @Column(name = "A_street")),
+        @AttributeOverride(name = "pincode", column = @Column(name = "A_pincode")),
+        @AttributeOverride(name = "state", column = @Column(name = "A_state"))
+    })
+    public Address address2;
+
+    @Embedded
+    @AttributeOverrides({
+        @AttributeOverride(name = "village", column = @Column(name = "B_village")),
+        @AttributeOverride(name = "street", column = @Column(name = "B_street")),
+        @AttributeOverride(name = "pincode", column = @Column(name = "B_pincode")),
+        @AttributeOverride(name = "state", column = @Column(name = "B_state"))
+    })
+    public Address address3;
+    /*
+     * Address(String village, String street, int pincode, String state)
+     */
 
     
+
 
     public User(int id, String name, int age, String email, Date date) {
         this.id = id;
@@ -117,12 +141,31 @@ public class User {
         this.address = address;
     }
 
-    @Override
-    public String toString() {
-        return "User [address=" + address + ", age=" + age + ", date=" + date + ", description=" + description
-                + ", email=" + email + ", file=" + file + ", id=" + id + ", name=" + name + "]";
+    public Address getAddress2() {
+        return address2;
     }
 
-   
+    public void setAddress2(Address address2) {
+        this.address2 = address2;
+    }
+
+    
+
+    public Address getAddress3() {
+        return address3;
+    }
+
+    public void setAddress3(Address address3) {
+        this.address3 = address3;
+    }
+
+    @Override
+    public String toString() {
+        return "User [address=" + address + ", address2=" + address2 + ", address3=" + address3 + ", age=" + age
+                + ", date=" + date + ", description=" + description + ", email=" + email + ", file=" + file + ", id="
+                + id + ", name=" + name + "]";
+    } 
+
+    
 
 }
