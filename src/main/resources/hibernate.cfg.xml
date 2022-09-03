@@ -32,12 +32,16 @@
         <property name="show_sql">true</property>
 
         <!-- 
+            https://stackoverflow.com/a/23678638
             create - Drop and re-create the database schema on startup 
             update - create the database schema on startup if not exists
         -->
         <property name="hbm2ddl.auto">create</property>
         
         <!-- mapping -->
+        <mapping class="io.github.animeshxd.User"/>
+        <mapping class="io.github.animeshxd.Post"/>
+        <mapping class="io.github.animeshxd.Tag"/>
 
 
     </session-factory>
