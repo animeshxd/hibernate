@@ -24,6 +24,9 @@ public class App
         session.persist(printer); //id: 3
 
         session.getTransaction().commit();
+        session.close();
+        session = factory.openSession();
+
         p = session.get(Product.class, 2);
         System.out.println(p);
 
