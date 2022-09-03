@@ -39,11 +39,6 @@
         <property name="hbm2ddl.auto">create</property>
         
         <!-- mapping -->
-        <mapping class="io.github.animeshxd.User"/>
-        <mapping class="io.github.animeshxd.Post"/>
-        <mapping class="io.github.animeshxd.Tag"/>
-
-
     </session-factory>
 
 </hibernate-configuration>
