@@ -3,6 +3,7 @@ package io.github.animeshxd;
 import java.util.LinkedList;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -22,7 +23,9 @@ public class Post {
     @ManyToOne
     private User user;
 
-    @ManyToMany // this class is responsible for creating table post_tag
+    @ManyToMany(cascade = CascadeType.PERSIST) 
+    // because of CascadeType.PERSIST we don't have to persist all tags individually
+    // this class is responsible for creating table post_tag
     private List<Tag> tags = new LinkedList<>();
 
     

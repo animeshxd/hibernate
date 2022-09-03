@@ -36,27 +36,28 @@ public class App
         p2.setContent("dart seems like python, java, c++").addTags(t1, t2, t3, t4, t5, t6);
         p3.setContent("c++ is ...").addTags(t3, t6);
 
-        p1.setUser(user);
-        p2.setUser(user);
-        p3.setUser(user);
+        // p1.setUser(user);
+        // p2.setUser(user);
+        // p3.setUser(user);
         user.addPosts(p1, p2, p3);
 
-        t1.addPosts(p1, p2);
-        t2.addPosts(p2);
-        t3.addPosts(p2, p3);
-        t4.addPosts(p2);
-        t5.addPosts(p2, p3);
-        t6.addPosts(p1, p2, p3);
+        // t1.addPosts(p1, p2);
+        // t2.addPosts(p2);
+        // t3.addPosts(p2, p3);
+        // t4.addPosts(p2);
+        // t5.addPosts(p2, p3);
+        // t6.addPosts(p1, p2, p3);
 
-        session.persist(user);
+        session.persist(user); 
+        // Because of CascadeType.PERSIST all related entity objects will be automatically persisted
 
-        session.persist(p1);
-        session.persist(p2);
-        session.persist(p3);
+        // session.persist(p1);
+        // session.persist(p2);
+        // session.persist(p3);
 
-        for (Tag t : List.of(t1, t2, t3, t4, t5, t6)) {
-            session.persist(t);
-        }
+        // for (Tag t : List.of(t1, t2, t3, t4, t5, t6)) {
+        //     session.persist(t);
+        // }
 
         session.getTransaction().commit();
 
@@ -64,7 +65,7 @@ public class App
 
         session = factory.openSession();
 
-        var t = session.find(Tag.class, "java");
+        var t = session.find(Tag.class, "lang");
         System.out.println(t);
 
 
