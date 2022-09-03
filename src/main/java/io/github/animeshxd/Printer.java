@@ -18,6 +18,9 @@ public class Printer extends Product {
         super(name);
         this.ink = ink;
     }
-    
-    
+       
+    @Override
+    public String toString() {
+        return "Printer [id=" + getId() + ", name=" + getName() + ", ink=" + ink +"]";
+    }
 }

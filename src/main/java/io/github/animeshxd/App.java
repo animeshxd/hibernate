@@ -14,13 +14,28 @@ public class App
 
         session.beginTransaction();
 
+        var p = new Product("A"); 
+        session.persist(p); // id: 1
+
         var car = new Car("AM","blue");
-        session.persist(car);
+        session.persist(car); // id: 2
 
         var printer = new Printer("AM+", true);
-        session.persist(printer);
+        session.persist(printer); //id: 3
 
         session.getTransaction().commit();
+        p = session.get(Product.class, 2);
+        System.out.println(p);
+
+        printer = null;
+        printer = (Printer)session.get(Product.class, 3);
+        System.out.println(printer);
+
+        printer = null;
+        printer = session.get(Printer.class, 3);
+        System.out.println(printer);
+
+
         session.close();
     }
 }

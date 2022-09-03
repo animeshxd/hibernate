@@ -1,10 +1,8 @@
 package io.github.animeshxd;
 
-import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 
 @Entity
-@DiscriminatorValue("Bike") // not required (maybe used only with SINGLE_TABLE strategy) | default DiscriminatorColumn's value (DiscriminatorValue) will be class name : Car 
 public class Car extends Product {
 
     private String color;
@@ -22,4 +20,12 @@ public class Car extends Product {
         super(name);
         this.color = color;
     }
+
+    @Override
+    public String toString() {
+        return "Car [id=" + getId() + ", name=" + getName() + ", color=" + color +"]";
+
+    }
+
+    
 }
