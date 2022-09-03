@@ -14,6 +14,13 @@ public class App
 
         session.beginTransaction();
 
+        var car = new Car("AM","blue");
+        session.persist(car);
+
+        var printer = new Printer("AM+", true);
+        session.persist(printer);
+
+        session.getTransaction().commit();
         session.close();
     }
 }
