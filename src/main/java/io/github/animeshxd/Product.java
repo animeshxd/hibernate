@@ -1,15 +1,10 @@
 package io.github.animeshxd;
 
-import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.Inheritance;
-import jakarta.persistence.InheritanceType;
+import jakarta.persistence.MappedSuperclass;
 
-@Entity 
-// multiple table will be used for storing this and its children , 
-// common parent field will be stored in a table, subclasses field will be mapped to seperate tables > FOREIGN KEY (id) REFERENCES product(id)
-@Inheritance(strategy = InheritanceType.JOINED) // without this annotation, Single Table strategy will be used by default
+@MappedSuperclass // there will not be any table for this class, its subclass will inherit fields of base class
 public class Product {
     @Id @GeneratedValue
     private int id;

@@ -14,28 +14,24 @@ public class App
 
         session.beginTransaction();
 
-        var p = new Product("A"); 
-        session.persist(p); // id: 1
+        // var p = new Product("A"); // can't be entity
+        // session.persist(p); // id: 1
 
         var car = new Car("AM","blue");
-        session.persist(car); // id: 2
+        session.persist(car); // id: 1
 
         var printer = new Printer("AM+", true);
-        session.persist(printer); //id: 3
+        session.persist(printer); //id: 1
 
         session.getTransaction().commit();
         session.close();
         session = factory.openSession();
 
-        p = session.get(Product.class, 2);
+        var p = session.get(Car.class, 1);
         System.out.println(p);
 
         printer = null;
-        printer = (Printer)session.get(Product.class, 3);
-        System.out.println(printer);
-
-        printer = null;
-        printer = session.get(Printer.class, 3);
+        printer = session.get(Printer.class, 1);
         System.out.println(printer);
 
 
