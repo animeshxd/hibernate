@@ -34,6 +34,18 @@ public class App
         printer = session.get(Printer.class, 1);
         System.out.println(printer);
 
+        printer.setName("Updated AM++");
+        printer.setInk(false);
+        session.merge(printer); // UPDATE
+
+        printer = session.get(Printer.class, 1);
+        System.out.println(printer);
+
+        session.remove(printer); // REMOVE
+
+         printer = session.get(Printer.class, 1);
+        System.out.println(printer);
+        
 
         session.close();
     }
