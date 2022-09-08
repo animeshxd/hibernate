@@ -1,6 +1,5 @@
 package io.github.animeshxd;
 
-import org.hibernate.annotations.SelectBeforeUpdate;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
