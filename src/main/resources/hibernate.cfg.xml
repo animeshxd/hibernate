@@ -39,9 +39,8 @@
         <property name="hbm2ddl.auto">create</property>
         
         <!-- mapping -->
-        <mapping class="io.github.animeshxd.Product"/>
-        <mapping class="io.github.animeshxd.Car"/>
-        <mapping class="io.github.animeshxd.Printer" />
+        <mapping class="io.github.animeshxd.User"/>
+
     </session-factory>
 
 </hibernate-configuration>
