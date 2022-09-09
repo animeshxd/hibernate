@@ -13,11 +13,11 @@ public class App
         Configuration cfg = new Configuration().configure("hibernate.cfg.xml");
         SessionFactory factory = cfg.buildSessionFactory();
         Session session = factory.openSession();
+                                         
+        Query<User> query = session.createQuery("from User where id > :id and name = :name", User.class);
+        query.setParameter("id", 5);
+        query.setParameter("name", "X");
 
-                                                        /**from Entity(name) not Table(name)*/
-        Query<User> query = session.createQuery("from User", User.class);
-        query.setFirstResult(5);
-        query.setMaxResults(7);
         System.out.println(query.list());
         
         session.close();
