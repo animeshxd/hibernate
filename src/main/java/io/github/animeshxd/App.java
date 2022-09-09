@@ -14,13 +14,17 @@ public class App
         Configuration cfg = new Configuration().configure("hibernate.cfg.xml");
         SessionFactory factory = cfg.buildSessionFactory();
         Session session = factory.openSession();
-                                         
+                                        
         Query<User> query = session.createNamedQuery("User.byId", User.class);
-        query.setParameter("id", 125);
+        query.setParameter("id", 12);
         System.out.println(query.list());
 
         query = session.createNamedQuery("User.byName", User.class);
         query.setParameter("name", "C");
+        System.out.println(query.list());
+
+        query = session.createNamedQuery("User.byIdNative", User.class);
+        query.setParameter("id", 5);
         System.out.println(query.list());
 
         session.close();
