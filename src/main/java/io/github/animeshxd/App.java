@@ -22,14 +22,15 @@ public class App
         Session session = factory.openSession();
 
         CriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery<Double> query = builder.createQuery(Double.class);
+        CriteriaQuery<String> query = builder.createQuery(String.class);
         
         Root<User> root = query.from(User.class);
 
         // query.select(builder.count(root)); // CriteriaQuery<Long>
         //query.select(builder.max(root.get("id"))); // CriteriaQuery<Integer>
-        query.select(builder.avg(root.get("id"))); // CriteriaQuery<Double>
+        //query.select(builder.avg(root.get("id"))); // CriteriaQuery<Double>
 
+        query.select(root.get("name")); // select name from user
         
         var q = session.createQuery(query);
         print(q.list());
