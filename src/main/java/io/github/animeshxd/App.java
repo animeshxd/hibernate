@@ -12,22 +12,30 @@ public class App
     {
         Configuration cfg = new Configuration().configure("hibernate.cfg.xml");
         SessionFactory factory = cfg.buildSessionFactory();
-        Session session = factory.openSession();
 
-        var user = session.find(User.class, 1);
-        print(user);
+        try {
+            Session session = factory.openSession();
+            
+            var query = session.createQuery("from User where id = 1", User.class)
+                                .setHint("org.hibernate.cacheable", true);
+            
+            print(query.list());
 
-        session.close();
+            session.close();
 
-        session = factory.openSession();
+            session = factory.openSession();
 
-        user = session.find(User.class, 1);
-        print(user);
+            query = session.createQuery("from User where id = 1", User.class)
+                            .setHint("org.hibernate.cacheable", true);
+            
+            print(query.list());
 
-        session.close();
-
-        print("terminating...");
-        factory.close(); // Required for cache termination, program
+            session.close();
+        }
+        finally {
+            print("terminating...");
+            factory.close(); // Required for cache termination, program
+        }
     }
 
     static void print(Object ... p){
