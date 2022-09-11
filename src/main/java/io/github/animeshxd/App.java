@@ -25,6 +25,9 @@ public class App
         print(user);
 
         session.close();
+
+        print("terminating...");
+        factory.close(); // Required for cache termination, program
     }
 
     static void print(Object ... p){
