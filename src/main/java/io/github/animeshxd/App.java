@@ -5,6 +5,11 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaDelete;
+import jakarta.persistence.criteria.CriteriaUpdate;
+import jakarta.persistence.criteria.Root;
+
 
 public class App 
 {
@@ -12,33 +17,32 @@ public class App
     {
         Configuration cfg = new Configuration().configure("hibernate.cfg.xml");
         SessionFactory factory = cfg.buildSessionFactory();
+        Session session = factory.openSession();
+        CriteriaBuilder builder = session.getCriteriaBuilder();
 
-        try {
-            Session session = factory.openSession();
-            
-            var query = session.createQuery("from User where id = 1", User.class)
-                                // .setHint("org.hibernate.cacheable", true);
-                                .setCacheable(true);
+        session.beginTransaction();
 
-            
-            print(query.list());
+        CriteriaUpdate<User> updateQuery = builder.createCriteriaUpdate(User.class);
+        Root<User> root = updateQuery.from(User.class);
+        updateQuery.set(root.get("name"), "A++").where(builder.equal(root.get("id"), 1));
 
-            session.close();
+        session.createQuery(updateQuery).executeUpdate(); 
+    //  session.createMutationQuery(updateQuery).executeUpdate(); // [hibernate 6]
 
-            session = factory.openSession();
+        session.getTransaction().commit();
 
-            query = session.createQuery("from User where id = 1", User.class)
-                            // .setHint("org.hibernate.cacheable", true)
-                            .setCacheable(true);
-            
-            print(query.list());
+        session.beginTransaction();
+        CriteriaDelete<User> deleteQuery = builder.createCriteriaDelete(User.class);
+        root = deleteQuery.from(User.class);
+        deleteQuery.where(builder.equal(root.get("id"), 1));
 
-            session.close();
-        }
-        finally {
-            print("terminating...");
-            factory.close(); // Required for cache termination, program
-        }
+        session.createQuery(deleteQuery).executeUpdate();
+    //  session.createMutationQuery(deleteQuery).executeUpdate(); // [hibernate 6]
+
+        session.getTransaction().commit();
+
+        session.close();
+        factory.close();
     }
 
     static void print(Object ... p){
