@@ -17,7 +17,9 @@ public class App
             Session session = factory.openSession();
             
             var query = session.createQuery("from User where id = 1", User.class)
-                                .setHint("org.hibernate.cacheable", true);
+                                // .setHint("org.hibernate.cacheable", true);
+                                .setCacheable(true);
+
             
             print(query.list());
 
@@ -26,7 +28,8 @@ public class App
             session = factory.openSession();
 
             query = session.createQuery("from User where id = 1", User.class)
-                            .setHint("org.hibernate.cacheable", true);
+                            // .setHint("org.hibernate.cacheable", true)
+                            .setCacheable(true);
             
             print(query.list());
 
