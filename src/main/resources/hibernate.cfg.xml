@@ -26,7 +26,7 @@
         <!-- <property name="dialect">org.hibernate.community.dialect.SQLiteDialect</property>-->
 
         <!-- PostgreSQLDialect -->
-        <property name="org.hibernate.dialect.PostgreSQLDialect"></property>
+        <property name="dialect">org.hibernate.dialect.PostgreSQLDialect</property>
 
         <!-- Echo all executed SQL to stdout -->
         <property name="show_sql">true</property>
@@ -37,6 +37,10 @@
             update - create the database schema on startup if not exists
         -->
         <property name="hbm2ddl.auto">update</property>
+
+        <!-- cacheing -->
+        <property name="cache.use_second_level_cache">true</property>
+        <property name="cache.region.factory_class">org.hibernate.cache.ehcache.internal.EhcacheRegionFactory</property>
         
         <!-- mapping -->
         <mapping class="io.github.animeshxd.User"/>
