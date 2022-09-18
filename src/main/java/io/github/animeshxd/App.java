@@ -1,10 +1,9 @@
 package io.github.animeshxd;
 
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
-
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaDelete;
 import jakarta.persistence.criteria.CriteriaUpdate;
@@ -15,12 +14,11 @@ public class App
 {
     public static void main( String[] args )
     {
-        Configuration cfg = new Configuration().configure("hibernate.cfg.xml");
-        SessionFactory factory = cfg.buildSessionFactory();
-        Session session = factory.openSession();
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("main");
+        EntityManager session = entityManagerFactory.createEntityManager();
+        
         CriteriaBuilder builder = session.getCriteriaBuilder();
-
-        session.beginTransaction();
+        session.getTransaction().begin();
 
         CriteriaUpdate<User> updateQuery = builder.createCriteriaUpdate(User.class);
         Root<User> root = updateQuery.from(User.class);
@@ -31,7 +29,7 @@ public class App
 
         session.getTransaction().commit();
 
-        session.beginTransaction();
+        session.getTransaction().begin();
         CriteriaDelete<User> deleteQuery = builder.createCriteriaDelete(User.class);
         root = deleteQuery.from(User.class);
         deleteQuery.where(builder.equal(root.get("id"), 1));
@@ -42,7 +40,7 @@ public class App
         session.getTransaction().commit();
 
         session.close();
-        factory.close();
+        entityManagerFactory.close();
     }
 
     static void print(Object ... p){

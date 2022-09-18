@@ -1,0 +1,58 @@
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+version="2.0">
+
+<!-- https://stackoverflow.com/questions/7251751/how-do-i-create-a-persistence-xml-file-for-jpa-and-hibernate -->
+<persistence-unit name="main">
+
+    <!-- provider -->
+    <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+    <!-- mapping -->
+    <!-- <class>io.github.animeshxd.User</class> -->
+
+
+    <!-- properties -->
+    <properties>
+        
+
+        <!-- Database connection settings -->
+        <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
+        <property name="hibernate.connection.url" value="jdbc:postgresql:test"/>
+        
+        <property name="hibernate.connection.username" value="test"/> 
+        <property name="hibernate.connection.password" value="test"/>
+       
+
+        <!-- JDBC connection pool (use the built-in) -->
+        <!-- <property name="hibernate.connection.pool_size">1</property> -->
+
+        <!-- sqlite date and time datatype -->
+        <!-- timestamp (default), INTEGER, REAL, TEXT -->
+        <!-- <property name="hibernate.connection.date_class">TEXT</property> -->
+
+        <!-- SQLiteDialect. -->
+        <!-- <property name="hibernate.dialect">org.hibernate.community.dialect.SQLiteDialect</property>-->
+
+        <!-- PostgreSQLDialect -->
+        <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
+
+        <!-- Echo all executed SQL to stdout -->
+        <property name="hibernate.show_sql" value="true"/>
+
+        <!-- 
+            https://stackoverflow.com/a/23678638
+            create - Drop and re-create the database schema on startup 
+            update - create the database schema on startup if not exists
+        -->
+        <property name="hibernate.hbm2ddl.auto" value="update"/>
+
+        <!-- cacheing -->
+        <property name="hibernate.cache.use_second_level_cache" value="true"/>
+        <property name="hibernate.cache.use_query_cache" value="true"/>
+        <property name="hibernate.cache.region.factory_class" value="org.hibernate.cache.ehcache.internal.EhcacheRegionFactory"/>
+        
+    </properties>
+</persistence-unit>
+</persistence>
